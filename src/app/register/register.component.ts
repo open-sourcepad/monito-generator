@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -7,7 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  userForm: any;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.userForm = this.formBuilder.group({
+      'user_name':[''],
+      'email':[''],
+      'password':[''],
+      'password_confirmation':[''],
+      }
+    )
+  }
+
+  onSubmit(form_params): any {
+    debugger;
+    console.log();
+  }
 
   ngOnInit() {
   }
