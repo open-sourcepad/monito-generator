@@ -1,5 +1,5 @@
 .card-content
-  form([formGroup]="userForm", (ngSubmit)= "onSubmit(userForm.value)")
+  form([formGroup]="userForm", (ngSubmit)="onSubmit(userForm.value)")
     h5 Sign Up
 
     label(for="user_name") User Name
@@ -14,4 +14,4 @@
     label(for="password_confirmation") Password Confirmation
     input(formControlName="password_confirmation", type="password")
 
-    button(class = "btn waves-effect waves-light green darken-2",type="submit") Signup
+    button(class="btn waves-effect waves-light green darken-2", type="submit") Signup
