@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ValidationService } from '../control-messages/validation.service';
 
 @Component({
   selector: 'app-register',
@@ -12,10 +13,10 @@ export class RegisterComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) {
     this.userForm = this.formBuilder.group({
-      'user_name':[''],
-      'email':[''],
-      'password':[''],
-      'password_confirmation':[''],
+      'user_name':['', Validators.required],
+      'email':['', [Validators.required, ValidationService.emailValidator]],
+      'password':['', [Validators.required, Validators.minLength(6)]],
+      'password_confirmation':['', Validators.required],
       }
     )
   }

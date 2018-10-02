@@ -1,17 +1,21 @@
 .card-content
   form([formGroup]="userForm", (ngSubmit)="onSubmit(userForm.value)")
-    h5 Sign Up
+    h5(class="session-title") Sign Up
 
-    label(for="user_name") User Name
-    input(formControlName="user_name")
+    label(class="input-label", for="user_name") User Name
+    input(id=user_name, formControlName="user_name")
+    <app-control-messages [control]="userForm.controls.user_name" ></app-control-messages>
 
-    label(for="email") Email
+    label(class="input-label", for="email") Email
     input(formControlName="email", type="email")
+    <app-control-messages [control]="userForm.controls.email"></app-control-messages>
 
-    label(for="password") Password
+    label(class="input-label", for="password") Password
     input(formControlName="password", type="password")
+    <app-control-messages [control]="userForm.controls.password"></app-control-messages>
 
-    label(for="password_confirmation") Password Confirmation
+    label(class="input-label", for="password_confirmation") Password Confirmation
     input(formControlName="password_confirmation", type="password")
+    <app-control-messages [control]="userForm.controls.password_confirmation"></app-control-messages>
 
-    button(class="btn waves-effect waves-light green darken-2", type="submit") Signup
+    button(class="btn waves-effect waves-light green darken-2 submit-btn", type="submit", [disabled]="!userForm.valid") Signup

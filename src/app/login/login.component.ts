@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ValidationService } from '../control-messages/validation.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { 
     this.userForm = this.formBuilder.group({
-      'email':[''],
-      'password':['']
+      'email':['', [Validators.required, ValidationService.emailValidator]],
+      'password':['', Validators.required]
       }
     )
   }
