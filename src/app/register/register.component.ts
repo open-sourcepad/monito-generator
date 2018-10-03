@@ -23,8 +23,13 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(form_params): any {
-    this.userService.add_user(form_params);
-  }
+    this.userService.add_user(form_params).subscribe(
+      response => {
+        debugger;
+        console.log();
+      }
+    );
+   }
 
   ngOnInit() {
   }
