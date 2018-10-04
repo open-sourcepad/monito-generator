@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ValidationService } from '../control-messages/validation.service';
+import { ValidationService } from '../../control-messages/validation.service';
 
 @Component({
   selector: 'app-login',
