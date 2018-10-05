@@ -11,7 +11,6 @@ import { UserService } from '../../services/api/user.service';
 export class RegisterComponent implements OnInit {
 
   userForm: any;
-
   constructor(private formBuilder: FormBuilder, private userService: UserService) {
     this.userForm = this.formBuilder.group({
       'user_name':['', Validators.required],
@@ -25,8 +24,8 @@ export class RegisterComponent implements OnInit {
   onSubmit(form_params): any {
     this.userService.add_user(form_params).subscribe(
       response => {
-        debugger;
-        console.log();
+        //debugger;
+        //console.log();
       }
     );
    }

@@ -13,6 +13,7 @@ import { ControlMessagesComponent } from './control-messages/control-messages.co
 import { AppRoutingModule } from './app-routing.module';
 import { SessionRoutingModule } from './session/session-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ShowErrorsComponent } from './session/show-errors/show-errors.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SessionComponent,
     ControlMessagesComponent,
     DashboardComponent,
+    ShowErrorsComponent,
   ],
   imports: [
     BrowserModule,
