@@ -1,6 +1,5 @@
 .card-content
-
-  <app-show-errors [errorResponse]="response"></app-show-errors>
+  app-show-errors([errorResponse]="rendResponse")
 
   form([formGroup]="userForm", (ngSubmit)="onSubmit(userForm.value)")
     h5(class="session-title") Sign Up

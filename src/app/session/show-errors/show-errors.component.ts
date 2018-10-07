@@ -8,7 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ShowErrorsComponent implements OnInit {
 
   @Input() errorResponse;
-  debugger
   constructor() { }
 
   ngOnInit() {

@@ -1,1 +1,4 @@
-p.red-text Show errors here
+div.red-text(*ngIf="errorResponse")
+  p {{errorResponse["user_error"]}}
+  p {{errorResponse["email_error"]}}
+  p {{errorResponse["pass_error"]}}

@@ -9,7 +9,7 @@ import { UserService } from '../../services/api/user.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
+  rendResponse: any;
   userForm: any;
   constructor(private formBuilder: FormBuilder, private userService: UserService) {
     this.userForm = this.formBuilder.group({
@@ -24,6 +24,9 @@ export class RegisterComponent implements OnInit {
   onSubmit(form_params): any {
     this.userService.add_user(form_params).subscribe(
       response => {
+        response = response.json();
+        this.rendResponse = response;
+        console.log(response);
         //debugger;
         //console.log();
       }
