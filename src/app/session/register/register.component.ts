@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ValidationService } from '../../control-messages/validation.service';
 import { UserService } from '../../services/api/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,9 +10,14 @@ import { UserService } from '../../services/api/user.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  rendResponse: any;
+  rendErrors: any;
+  rendUser: any;
+  rendToken: any;
+
   userForm: any;
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(private formBuilder: FormBuilder,
+              private userService: UserService,
+              private router: Router){
     this.userForm = this.formBuilder.group({
       'user_name':['', Validators.required],
       'email':['', [Validators.required, ValidationService.emailValidator]],
@@ -25,8 +31,24 @@ export class RegisterComponent implements OnInit {
     this.userService.add_user(form_params).subscribe(
       response => {
         response = response.json();
-        this.rendResponse = response;
-        console.log(response);
+
+        if ('user' in response){
+          this.rendUser = response['user'];
+          this.rendToken = response['token'];
+
+          console.log('Registration Success!');
+          console.log(this.rendUser, this.rendToken);
+
+          // activate dashboard link
+          this.router.navigate(['/dashboard/' + this.rendUser['user_name']])
+          // put login cookie in the browser
+        }
+        else{
+          this.rendErrors = response;
+          console.log("Registration Failed!");
+          console.log(response);
+        }
+
         //debugger;
         //console.log();
       }
