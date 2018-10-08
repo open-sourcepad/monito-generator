@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   rendErrors: any;
   rendUser: any;
-  rendToken: any;
 
   userForm: any;
   constructor(private formBuilder: FormBuilder,
@@ -32,12 +31,11 @@ export class RegisterComponent implements OnInit {
       response => {
         response = response.json();
 
-        if ('user' in response){
-          this.rendUser = response['user'];
-          this.rendToken = response['token'];
+        if ('user_name' in response){
+          this.rendUser = response;
 
           console.log('Registration Success!');
-          console.log(this.rendUser, this.rendToken);
+          console.log(this.rendUser);
 
           // activate dashboard link
           this.router.navigate(['/dashboard/' + this.rendUser['user_name']])
