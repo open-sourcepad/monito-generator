@@ -19,8 +19,9 @@ export class UserService {
   }
 
   login_user(user){
-    debugger;
-    console.log();
+    var newUserPath = environment.api_url + "/api/sessions";
+
+    return this.http.post(newUserPath, user);
   }
 
   constructor(private http:Http) { }

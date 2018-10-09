@@ -36,7 +36,8 @@ export class RegisterComponent implements OnInit {
 
           console.log('Registration Success!');
           console.log(this.rendUser);
-
+          localStorage.setItem('mg_current_user', JSON.stringify(this.rendUser))
+          debugger;
           // activate dashboard link
           this.router.navigate(['/dashboard/' + this.rendUser['user_name']])
           // put login cookie in the browser
