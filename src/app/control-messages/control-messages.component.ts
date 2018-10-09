@@ -9,7 +9,6 @@ import { ValidationService } from './validation.service';
 })
 export class ControlMessagesComponent implements OnInit {
   @Input() control: FormControl;
-
   constructor() { }
 
   get errorMessage() {
@@ -20,7 +19,6 @@ export class ControlMessagesComponent implements OnInit {
     return null;
 
     }
-
   }
 
   ngOnInit() {

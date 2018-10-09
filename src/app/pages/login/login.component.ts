@@ -3,12 +3,14 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ValidationService } from '../../control-messages/validation.service';
 import { UserService } from '../../services/api/user.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.pug',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   rendUser: any;
   rendErrors: any;
   userForm :any;
@@ -46,6 +48,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  saySomething(event) {
+    console.log(event);
   }
 
 }

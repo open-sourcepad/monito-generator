@@ -1,0 +1,27 @@
+.front-outer
+  .row.front-inner
+    .container.col.s10.offset-s1.m6.l5.offset-l1
+      p#mg-desc
+        span#mg-title.red-text Monito Generator 
+        span#mg-intro.white-text is an open-source platform for exchanging gifts and party planning. Founded from the monito-monita concept, this service provides an automated procedure to assign who gives who. Enjoy the spirit of giving hassle-free for any occasion!
+
+
+    .container.card.col.s10.offset-s1.m6.l5
+      .card-content
+        app-show-errors([errorResponse]="rendErrors")
+        form([formGroup]="userForm", (ngSubmit)="onSubmit(userForm.value)")
+          h5(class="session-title") Log In
+
+          label(class="input-label", for="email") Email
+          input(formControlName="email", type="email")
+          <app-control-messages [control] = "userForm.controls.email"></app-control-messages>
+
+          label(class="input-label", for="email") Password
+          input(formControlName="password", type="password")
+          <app-control-messages [control] = "userForm.controls.password"></app-control-messages>
+          p 
+            span Don't have an account? 
+            span 
+              a(routerLink="/register", class="red-text") Sign Up!
+          br
+          button(class="btn waves-effect waves-light yellow darken-2 submit-btn", type="submit", [disabled]="!userForm.valid") Login

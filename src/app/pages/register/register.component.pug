@@ -1,0 +1,26 @@
+.row
+  .container.card.col.s10.offset-s1.m10.offset-m1.l8.offset-l2
+
+    .card-content
+      app-show-errors([errorResponse]="rendErrors")
+
+      form([formGroup]="userForm", (ngSubmit)="onSubmit(userForm.value)")
+        h5(class="session-title") Sign Up
+
+        label(class="input-label", for="user_name") User Name
+        input(id=user_name, formControlName="user_name")
+        <app-control-messages [control]="userForm.controls.user_name" ></app-control-messages>
+
+        label(class="input-label", for="email") Email
+        input(formControlName="email", type="email")
+        <app-control-messages [control]="userForm.controls.email"></app-control-messages>
+
+        label(class="input-label", for="password") Password
+        input(formControlName="password", type="password")
+        <app-control-messages [control]="userForm.controls.password"></app-control-messages>
+
+        label(class="input-label", for="password_confirmation") Password Confirmation
+        input(formControlName="password_confirmation", type="password")
+        <app-control-messages [control]="userForm.controls.password_confirmation"></app-control-messages>
+
+        button(class="btn waves-effect waves-light yellow darken-2 submit-btn", type="submit", [disabled]="!userForm.valid") Signup
