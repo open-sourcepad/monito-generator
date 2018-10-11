@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ValidationService } from '../../control-messages/validation.service';
 import { UserService } from '../../services/api/user.service';
+import { HttpService } from '../../services/api/http.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,6 +17,7 @@ export class RegisterComponent implements OnInit {
   userForm: any;
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
+              private httpService: HttpService,
               private router: Router){
     this.userForm = this.formBuilder.group({
       'user_name':['', Validators.required],
@@ -27,10 +29,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(form_params): any {
-    this.userService.add_user(form_params).subscribe(
+    this.httpService.sendToRoute('/api/users',form_params, null).subscribe(
       response => {
         response = response.json();
-
         if ('user_name' in response){
           this.rendUser = response;
 

@@ -1,0 +1,24 @@
+.dash-sect{
+  margin-top:20px;
+}
+.card{
+  padding:15px;
+  margin-right:20px;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+.dash-title{
+  font-family: "Lobster";
+  font-size:1.3em;
+}
+.circle-title{
+  font-family: "Lobster";
+}
+.upcoming-title{
+  font-family: "Lobster";
+  font-size:1.3em;
+}
+.dash-btn{
+  margin:5px;
+  font-weight:bold;
+}

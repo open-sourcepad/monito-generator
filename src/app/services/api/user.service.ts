@@ -3,26 +3,21 @@ import { environment } from '../../../environments/environment';
 
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private loggedUser = new BehaviorSubject<string>(null);
 
-  add_user(user){
-    var newUserPath = environment.api_url + "/api/users";
-    // debugger;
-    // console.log();
-    return this.http.post(newUserPath, user);
+  public setLoggedUser(user){
+    this.loggedUser.next(user);
+  };
+
+  public getLoggedUser(){
+    return this.loggedUser;
   }
-
-  login_user(user){
-    var newUserPath = environment.api_url + "/api/sessions";
-
-    return this.http.post(newUserPath, user);
-  }
-
-  constructor(private http:Http) { }
+  constructor() { }
 }

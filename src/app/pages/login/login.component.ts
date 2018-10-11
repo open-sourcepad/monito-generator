@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ValidationService } from '../../control-messages/validation.service';
 import { UserService } from '../../services/api/user.service';
+import { HttpService } from '../../services/api/http.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +16,10 @@ export class LoginComponent implements OnInit {
   rendErrors: any;
   userForm :any;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) {
+  constructor(private formBuilder: FormBuilder,
+              private userService: UserService,
+              private router: Router,
+              private httpService: HttpService) {
     this.userForm = this.formBuilder.group({
       'email':['', [Validators.required, ValidationService.emailValidator]],
       'password':['', Validators.required]
@@ -24,7 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form_params): any {
-    this.userService.login_user(form_params).subscribe(
+    this.httpService.sendToRoute('/api/sessions',form_params, null).subscribe(
       response => {
         response = response.json();
         if ('user_name' in response){
@@ -48,10 +52,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-  saySomething(event) {
-    console.log(event);
   }
 
 }

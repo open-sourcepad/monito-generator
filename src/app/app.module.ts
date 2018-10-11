@@ -14,6 +14,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ShowErrorsComponent } from './show-errors/show-errors.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { PagesComponent } from './pages/pages.component';
+import { ClienterrorComponent } from './pages/clienterror/clienterror.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { PagesComponent } from './pages/pages.component';
     ShowErrorsComponent,
     NavbarComponent,
     PagesComponent,
+    ClienterrorComponent,
   ],
   imports: [
     BrowserModule,

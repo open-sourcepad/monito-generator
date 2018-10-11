@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/utility/auth.service';
 
 @Component({
   selector: 'app-pages',
@@ -7,8 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./pages.component.css']
 })
 export class PagesComponent implements OnInit {
-
-  constructor(private router: Router) { }
+  currentUser: any;
+  constructor(private router: Router, private authService: AuthService) {
+    /*this.authService.fetchCurrentUser().subscribe(user_name => {
+      this.currentUser = user_name;
+    });*/
+  }
 
   ngOnInit() {
   }
