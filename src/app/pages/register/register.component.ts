@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(form_params): any {
-    this.httpService.sendToRoute('/api/users',form_params, null).subscribe(
+    this.httpService.postToRoute('/api/users',form_params, null).subscribe(
       response => {
         response = response.json();
         if ('user_name' in response){

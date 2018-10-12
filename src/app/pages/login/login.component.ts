@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form_params): any {
-    this.httpService.sendToRoute('/api/sessions',form_params, null).subscribe(
+    this.httpService.postToRoute('/api/sessions',form_params, null).subscribe(
       response => {
         response = response.json();
         if ('user_name' in response){

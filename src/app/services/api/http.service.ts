@@ -7,7 +7,7 @@ import { environment } from '../../../environments/environment';
 export class HttpService {
   constructor(private http: Http) { }
 
-  sendToRoute(path, object, headers){
+  postToRoute(path, object, headers){
     path = environment.api_url + path;
     return this.http.post(path, object, headers);
   };
