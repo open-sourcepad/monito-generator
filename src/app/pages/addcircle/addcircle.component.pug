@@ -1,0 +1,21 @@
+.row
+  .container.card.col.s10.offset-s1.m10.offset-m1.l8.offset-l2
+
+    .card-content
+      button(class="btn waves-effect waves-light yellow darken-2 submit-btn", type="submit") Back to Dashboard
+      form([formGroup]="circleForm", (ngSubmit)="addCircle(circleForm.value)")
+        h5(class="session-title") Circle Details
+
+        label(class="input-label", for="circle_name") Circle Name
+        input(id="circle_name", formControlName="circle_name")
+        <app-control-messages [control]="circleForm.controls.circle_name" ></app-control-messages>
+
+        label(class="input-label", for="budget") Budget
+        input(id="budget", formControlName="budget")
+        <app-control-messages [control]="circleForm.controls.budget" ></app-control-messages>
+
+        label(class="input-label", for="exchange_date") Date of Exchange
+        input(id="exchange_date", formControlName="exchange_date", type="date")
+        <app-control-messages [control]="circleForm.controls.exchange_date" ></app-control-messages>
+
+        button(class="btn waves-effect waves-light yellow darken-2 submit-btn", type="submit", [disabled]="!circleForm.valid") Create Group

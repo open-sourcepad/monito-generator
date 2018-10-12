@@ -14,5 +14,10 @@ export class AuthService {
     this.storedUser = JSON.parse(localStorage.getItem('mg_current_user'));
     this.getCurrentUser.emit(this.storedUser);
   }*/
+
+  getUser(){
+    this.storedUser = JSON.parse(localStorage.getItem('mg_current_user'))['user_name'];
+    return this.storedUser;
+  };
   constructor(private http: Http, private httpService: HttpService) { }
 }

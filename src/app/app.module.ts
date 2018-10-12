@@ -15,6 +15,7 @@ import { ShowErrorsComponent } from './show-errors/show-errors.component';
 import { NavbarComponent } from './pages/navbar/navbar.component';
 import { PagesComponent } from './pages/pages.component';
 import { ClienterrorComponent } from './pages/clienterror/clienterror.component';
+import { AddcircleComponent } from './pages/addcircle/addcircle.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ClienterrorComponent } from './pages/clienterror/clienterror.component'
     NavbarComponent,
     PagesComponent,
     ClienterrorComponent,
+    AddcircleComponent,
   ],
   imports: [
     BrowserModule,
