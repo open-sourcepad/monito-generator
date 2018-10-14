@@ -1,0 +1,13 @@
+.circle-label{
+  font-family: "Lobster";
+  font-size: 2em;
+}
+.submit-btn{
+  margin: 10px;
+}
+.owner-label, .exchange-label, .budget-label{
+  font-size:1.1em;
+}
+.exchange-label{
+  font-weight:bold;
+}

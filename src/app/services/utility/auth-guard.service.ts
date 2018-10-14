@@ -18,13 +18,19 @@ export class AuthGuardService implements CanActivate{
     // console.log(state) '/dashboard/test'
     // var visitValid = this.auth.validateRouteVisit(route.params['user'])
     this.storedUser = JSON.parse(localStorage.getItem('mg_current_user'));
-    if(this.storedUser['user_name'] == route.params['user']){
-      this.visitValid = true;
+
+    if(this.storedUser){
+      if(this.storedUser['user_name'] == route.params['user']){
+        return true
+      }
+      else{
+        this.router.navigate(['/login']);
+        return false
+      }
     }
-    if (!this.visitValid){
+    else{
       this.router.navigate(['/login']);
       return false
     }
-    return true
   }
 }

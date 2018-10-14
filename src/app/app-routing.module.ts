@@ -7,6 +7,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AuthGuardService  } from './services/utility/auth-guard.service';
 import { ClienterrorComponent } from './pages/clienterror/clienterror.component';
 import { AddcircleComponent } from './pages/addcircle/addcircle.component';
+import { ShowcircleComponent } from './pages/showcircle/showcircle.component';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -17,6 +18,10 @@ const routes: Routes = [
   },
  { path: 'addcircle/:user',
     component: AddcircleComponent,
+    canActivate: [AuthGuardService]
+  },
+ { path: ':user/showcircle/:circle',
+    component: ShowcircleComponent,
     canActivate: [AuthGuardService]
   },
   { path: '**', component: ClienterrorComponent}

@@ -2,24 +2,35 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/api/user.service';
 import { AuthService } from '../../services/utility/auth.service';
 import { Router } from '@angular/router';
+import { HttpService } from '../../services/api/http.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.pug',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  currentUser;
+  currentUser: any = this.authService.getUser();
+  allCircles: any;
   constructor(private userService: UserService,
               private authService: AuthService,
-              private router: Router
+              private router: Router,
+              private httpService: HttpService
   ) { }
 
   goToAddCircle(){
-    this.currentUser = this.authService.getUser();
-    this.router.navigate([`addcircle/${this.currentUser}`]);
+    this.router.navigate([`addcircle/${this.currentUser['user_name']}`]);
+  }
+
+  getCircles(){
+    let params = new HttpParams();
+    params = params.append('user_name', this.currentUser['user_name']);
+    this.httpService.getToRoute(`/api/circles/`, {params: params}).subscribe( response=>{
+      this.allCircles = response['circles'];
+    });
   }
   ngOnInit() {
-    //this.userService.setLoggedUser(123);
+    this.getCircles();
   }
 
 }

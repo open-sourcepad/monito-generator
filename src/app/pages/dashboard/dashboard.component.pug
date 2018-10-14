@@ -1,13 +1,36 @@
 .dash-sect
   .row
-    .card.col.s10.offset-s1.m3.offset-m1.l3.offset-l1.red.white-text
-      p.dash-title My Dashboard
-      p Welcome to your dashboard where all the magic happens! Add a circle and invite people now.
-      a.btn.waves-effect.waves-light.teal.lighten-2.dash-btn((click)="goToAddCircle()") Add Circle
-    .card.col.s10.offset-s1.m7.l7
-      h5.circle-title My Circles
-      p You have no circles to show.
-  .row
-    .card.col.s10.offset-s1.m3.offset-m1.l3.offset-l1.yellow.darken-2.white-text
-      p.upcoming-title Upcoming Exchanges
-      p No upcoming exchanges
+    .user-sect.col.s10.offset-s1.m3.offset-m1.l3.offset-l1
+      .card.red.white-text.component-card
+        p.dash-title My Dashboard
+        p Welcome to your dashboard where all the magic happens! Add a circle and invite people now.
+        a.btn.waves-effect.waves-light.teal.lighten-2.dash-btn((click)="goToAddCircle()") Add Circle
+      br
+      .card.yellow.darken-2.white-text.component-card
+        p.upcoming-title Upcoming Exchanges
+        p No upcoming exchanges.
+
+    .col.s10.offset-s1.m7.l7.component-card
+      h5.red-text.circle-title My Circles
+      .div(*ngIf="allCircles")
+
+        .div(*ngIf="allCircles.length >= 1; else noCircles")
+          .div(*ngFor="let circle of allCircles")
+            .card.circle-card
+              .card-content
+                p.circle-label.teal-text {{circle['circle_name']}}
+                p.budget-label Owner: {{currentUser['user_name']}}
+                p.exchange-label Exchange Date: {{circle['exchange_date']}}
+                p.budget-label Budget: {{circle['budget']}}
+
+              .card-action
+                a.btn-floating.btn-large.waves-effect.waves-light.red.action-btn(routerLink=`/{{currentUser['user_name']}}/showcircle/{{circle['id']}}`)
+                  i.material-icons add
+
+                a.btn-floating.btn-large.waves-effect.waves-light.red.action-btn
+                  i.material-icons edit
+
+                a.btn-floating.btn-large.waves-effect.waves-light.red.action-btn
+                  i.material-icons close
+        ng-template(#noCircles)
+          p No Circles to Show. Add a Circle now by clicking the "Add Circle" button.

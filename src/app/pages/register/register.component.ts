@@ -31,14 +31,12 @@ export class RegisterComponent implements OnInit {
   onSubmit(form_params): any {
     this.httpService.postToRoute('/api/users',form_params, null).subscribe(
       response => {
-        response = response.json();
         if ('user_name' in response){
           this.rendUser = response;
 
           console.log('Registration Success!');
           console.log(this.rendUser);
           localStorage.setItem('mg_current_user', JSON.stringify(this.rendUser))
-          debugger;
           // activate dashboard link
           this.router.navigate(['/dashboard/' + this.rendUser['user_name']])
           // put login cookie in the browser

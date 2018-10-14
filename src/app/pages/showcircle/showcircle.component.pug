@@ -1,0 +1,13 @@
+.row
+  .col.s10.offset-s1.m10.offset-m1.l10.offset-l1.circle-card(*ngIf="currentCircle")
+    button(class="btn waves-effect waves-light red submit-btn", (click)="goBack()") Back to Dashboard
+
+    .card.center
+      .card-content
+        p.circle-label.teal-text {{currentCircle['circle_name']}}
+        p.owner-label Owner: {{currentCircle['owner']}}
+        p.exchange-label Exchange Date: {{currentCircle['exchange_date']}}
+        p.budget-label Budget: {{currentCircle['budget']}}
+
+    app-add-users
+

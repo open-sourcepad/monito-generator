@@ -36,7 +36,6 @@ export class AddcircleComponent implements OnInit {
     this.requestHolder = {'circle_name':form_params['circle_name'], 'budget': form_params['budget'], 'exchange_date':form_params['exchange_date'], 'user_name': this.storedUser['user_name'], 'auth_hash': this.storedUser['auth_hash'] };
     this.httpService.postToRoute('/api/circles', this.requestHolder, null).subscribe(
       response =>{
-        response = response.json();
         if(response['error']){
           console.log(response);
           this.router.navigate([`/dashboard/${this.storedUser['user_name']}`]);
