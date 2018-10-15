@@ -2,3 +2,7 @@
 html {
   background-color: #FAFFE1;
 }
+btn{
+  font-weight:bold;
+  margin:10px;
+}

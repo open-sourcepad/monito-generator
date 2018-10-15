@@ -1,1 +1,24 @@
-p AddUsers component go here
+.card
+  .add-users-cont.card-content.center
+    h5.invite-text
+      span Invite people and 
+      span.branded.red-text monito-generate!
+
+    form([formGroup]="usersForm", (ngSubmit)="onSubmit(usersForm.value)")
+      .div(formArrayName="users")
+        .form-div(*ngFor="let user of usersForm.get('users').controls;let i=index")
+          .div([formGroupName]="i")
+            span
+              label Code Name
+              input(id="user_name", formControlName="user_name")
+              app-control-messages([control]="user.controls.user_name")
+            span
+              label Email
+              input(formControlName="email", type="email")
+              app-control-messages([control]="user.controls.email")
+          button.btn-small.waves-effect.waves-light.red.darken-2((click)="removeUser(i)") Remove
+
+        a.btn.waves-effect.waves-light.teal.lighten-2.add-user-btn((click)="addUser()") Add Users
+        br
+        br
+        button.btn-large.waves-effect.waves-light.yellow.darken-2.submit-btn(type="submit", [disabled]="!usersForm.valid") Submit

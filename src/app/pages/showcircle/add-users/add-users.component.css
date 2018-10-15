@@ -1,0 +1,15 @@
+.invite-text{
+  font-family:"Raleway";
+}
+.branded{
+  font-family:"Lobster";
+}
+.form-div{
+  padding:40px;
+}
+input{
+  text-align:center;
+}
+.add-user-btn{
+  font-weight:bold;
+}
