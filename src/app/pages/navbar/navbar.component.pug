@@ -1,7 +1,10 @@
+
 nav.white
   .nav-wrapper.red
     a(class="brand-logo white-text center")
       span.text
         a(routerLink="/") Monito Generator
-div(*ngIf="currentUser")
-  p A user is signed in
+    .div(*ngIf="userHolder")
+      ul#nav-mobile.right(class="left")
+        li
+          a.btn.waves-effect-waves-light.teal.lighten-1((click)="logoutUser()") Logout

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ControlMessagesComponent } from '../../../control-messages/control-messages.component'
 import { ValidationService } from '../../../control-messages/validation.service'
-
+import { HttpService } from '../../../services/api/http.service';
 
 @Component({
   selector: 'app-add-users',
@@ -10,8 +10,11 @@ import { ValidationService } from '../../../control-messages/validation.service'
   styleUrls: ['./add-users.component.css']
 })
 export class AddUsersComponent implements OnInit {
+  @Input() currentCircle;
+
   usersForm:any;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private httpService: HttpService) {
     this.usersForm = this.formBuilder.group({
       users: this.formBuilder.array([])
     });
@@ -36,6 +39,12 @@ export class AddUsersComponent implements OnInit {
   onSubmit(formParams){
     debugger;
     console.log(formParams);
+    console.log(this.currentCircle);
+    var path = `/api/circles/${this.currentCircle['id']}/send_emails`;
+    this.httpService.postToRoute(path, {'currenct_circle': this.currentCircle, 'invitations': formParams  },{}).subscribe( response => {
+      console.log(response);
+
+    });
   }
   ngOnInit() {
     this.addUser();

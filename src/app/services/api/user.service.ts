@@ -11,6 +11,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class UserService {
   private loggedUser = new BehaviorSubject<string>(null);
+  data = this.loggedUser.asObservable();
 
   public setLoggedUser(user){
     this.loggedUser.next(user);
