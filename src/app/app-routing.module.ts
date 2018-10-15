@@ -8,10 +8,17 @@ import { AuthGuardService  } from './services/utility/auth-guard.service';
 import { ClienterrorComponent } from './pages/clienterror/clienterror.component';
 import { AddcircleComponent } from './pages/addcircle/addcircle.component';
 import { ShowcircleComponent } from './pages/showcircle/showcircle.component';
+import { LoginGuardService } from './services/utility/login-guard.service';
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  { path: 'login',
+    component: LoginComponent,
+    canActivate: [LoginGuardService]
+  },
+  { path: 'register',
+    component: RegisterComponent,
+    canActivate: [LoginGuardService]
+   },
   { path: 'dashboard/:user',
     component: DashboardComponent,
     canActivate: [AuthGuardService]
