@@ -9,7 +9,8 @@ export class ValidationService {
       'required': 'Required',
       'invalidEmailAddress': 'Invalid email address',
       'invalidPassword': 'Invalid password. Password must be at least 6 characters long, and contain a number.',
-      'minlength': `Minimum length ${validatorValue.requiredLength}`
+      'minlength': `Minimum length ${validatorValue.requiredLength}`,
+      'invalidDate': 'Invalid Date'
     };
 
        return config[validatorName];
@@ -23,6 +24,21 @@ export class ValidationService {
  
     else {
       return { 'invalidEmailAddress': true };
+    }
+  }
+
+  static dateValidator(control){
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyyy = today.getFullYear();
+    var date = yyyy +'-'+ mm +'-'+ dd;
+
+    if(control.value >= date){
+      return null
+    }
+    else{
+      return {'invalidDate': true}
     }
   }
 }

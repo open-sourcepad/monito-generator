@@ -5,6 +5,7 @@ import { HttpService } from '../../services/api/http.service';
 import { AuthService } from '../../services/utility/auth.service';
 import { Headers,RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
+import { ValidationService } from '../../control-messages/validation.service';
 @Component({
   selector: 'app-addcircle',
   templateUrl: './addcircle.component.pug',
@@ -14,6 +15,7 @@ export class AddcircleComponent implements OnInit {
   circleForm: any;
   storedUser: any;
   requestHolder: any;
+  date = new Date();
   constructor(private formBuilder: FormBuilder,
               private location: Location,
               private httpService: HttpService,
@@ -23,7 +25,7 @@ export class AddcircleComponent implements OnInit {
     this.circleForm = this.formBuilder.group({
       'circle_name': ['', Validators.required],
       'budget': ['', Validators.required],
-      'exchange_date': ['', Validators.required]
+      'exchange_date': ['', [Validators.required, ValidationService.dateValidator]]
     });
 
   }
