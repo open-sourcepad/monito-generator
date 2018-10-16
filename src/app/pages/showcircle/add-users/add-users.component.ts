@@ -24,7 +24,6 @@ export class AddUsersComponent implements OnInit {
     var usersArr = <FormArray>this.usersForm.controls.users;
     usersArr.push(
       this.formBuilder.group({
-        'user_name':['',Validators.required],
         'email':['',[Validators.required, ValidationService.emailValidator]],
       })
     )
@@ -41,7 +40,7 @@ export class AddUsersComponent implements OnInit {
     console.log(formParams);
     console.log(this.currentCircle);
     var path = `/api/circles/${this.currentCircle['id']}/send_emails`;
-    this.httpService.postToRoute(path, {'currenct_circle': this.currentCircle, 'invitations': formParams  },{}).subscribe( response => {
+    this.httpService.postToRoute(path, {'current_circle': this.currentCircle, 'invitations': formParams  },{}).subscribe( response => {
       console.log(response);
 
     });

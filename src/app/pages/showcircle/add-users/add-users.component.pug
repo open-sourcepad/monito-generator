@@ -9,10 +9,6 @@
         .form-div(*ngFor="let user of usersForm.get('users').controls;let i=index")
           .div([formGroupName]="i")
             span
-              label Code Name
-              input(id="user_name", formControlName="user_name")
-              app-control-messages([control]="user.controls.user_name")
-            span
               label Email
               input(formControlName="email", type="email")
               app-control-messages([control]="user.controls.email")
