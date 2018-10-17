@@ -25,7 +25,8 @@ export class AddcircleComponent implements OnInit {
     this.circleForm = this.formBuilder.group({
       'circle_name': ['', Validators.required],
       'budget': ['', Validators.required],
-      'exchange_date': ['', [Validators.required, ValidationService.dateValidator]]
+      'exchange_date': ['', [Validators.required, ValidationService.dateValidator]],
+      'code_name': ['', Validators.required],
     });
 
   }
@@ -35,7 +36,13 @@ export class AddcircleComponent implements OnInit {
   }
   addCircle(form_params){
     this.storedUser = this.authService.getUser();
-    this.requestHolder = {'circle_name':form_params['circle_name'], 'budget': form_params['budget'], 'exchange_date':form_params['exchange_date'], 'user_name': this.storedUser['user_name'], 'auth_hash': this.storedUser['auth_hash'] };
+    this.requestHolder = {'circle_name':form_params['circle_name'],
+                           'budget': form_params['budget'],
+                           'exchange_date':form_params['exchange_date'],
+                           'user_name': this.storedUser['user_name'],
+                           'auth_hash': this.storedUser['auth_hash'],
+                           'code_name': form_params['code_name']
+    };
     this.httpService.postToRoute('/api/circles', this.requestHolder, null).subscribe(
       response =>{
         if(response['error']){

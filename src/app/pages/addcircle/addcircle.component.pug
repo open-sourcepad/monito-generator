@@ -18,4 +18,10 @@
         input(id="exchange_date", formControlName="exchange_date", type="date")
         <app-control-messages [control]="circleForm.controls.exchange_date" ></app-control-messages>
 
+        .row
+          .div.card.code-div.yellow.darken-2.col.s12.m6.l6
+            label.white-text(class="input-label", for="circle_name") Your Code Name (to be used for the draw in this circle)
+            input.white-text(id="code_name", formControlName="code_name")
+            <app-control-messages [control]="circleForm.controls.code_name" ></app-control-messages>
+
         button(class="btn waves-effect waves-light yellow darken-2 submit-btn", type="submit", [disabled]="!circleForm.valid") Create Group

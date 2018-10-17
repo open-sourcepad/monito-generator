@@ -9,7 +9,8 @@ import { Location } from '@angular/common';
 })
 export class ShowcircleComponent implements OnInit {
   params;
-  currentCircle;
+  currentCircle: any;
+  acceptedEmails: any;
   constructor(private httpService: HttpService,
               private route: ActivatedRoute,
               private location: Location
@@ -24,7 +25,7 @@ export class ShowcircleComponent implements OnInit {
     this.params = snapshot.params;
     this.httpService.getToRoute(`/api/circles/${this.params['circle']}`, {}).subscribe(response =>{
       this.currentCircle = response['circle_found'];
-      console.log(this.currentCircle['circle_found']);
+      this.acceptedEmails = response['accepted_emails'];
     });
   };
   ngOnInit() {

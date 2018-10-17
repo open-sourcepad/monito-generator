@@ -15,23 +15,32 @@ export class RegisterComponent implements OnInit {
   rendUser: any;
 
   userForm: any;
+  groupExist: any;
+  regForm: any;
+  invitedBy: any;
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private httpService: HttpService,
               private router: Router,
               private route: ActivatedRoute
-    ){
-    this.userForm = this.formBuilder.group({
-      'user_name':['', Validators.required],
-      'email':['', [Validators.required, ValidationService.emailValidator]],
-      'password':['', [Validators.required, Validators.minLength(6)]],
-      'password_confirmation':['', Validators.required],
-      }
-    )
+  ){
+     this.regForm = {
+       'user_name':['', Validators.required],
+       'email':['', [Validators.required, ValidationService.emailValidator]],
+       'password':['', [Validators.required, Validators.minLength(6)]],
+       'password_confirmation':['', Validators.required]
+     }
+     this.invitedBy = this.route.snapshot.params['circle_id']
+
+     if(this.invitedBy){
+       this.regForm['code_name'] = ['', Validators.required]
+     }
+
+     this.userForm = this.formBuilder.group(this.regForm)
   }
 
   onSubmit(form_params): any {
-    form_params['invited_by'] = this.route.snapshot.params['circle_id'];
+    form_params['invited_by'] = this.invitedBy;
     this.httpService.postToRoute('/api/users',form_params, null).subscribe(
       response => {
         if ('user_name' in response){
@@ -54,6 +63,8 @@ export class RegisterComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.groupExist = this.route.snapshot.params['circle_id'];
+    // check if valid
   }
 
 }

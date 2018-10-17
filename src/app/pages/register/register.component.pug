@@ -20,6 +20,14 @@
         label(class="input-label", for="password_confirmation") Password Confirmation
         input(formControlName="password_confirmation", type="password")
         <app-control-messages [control]="userForm.controls.password_confirmation"></app-control-messages>
+
+        .div(*ngIf="groupExist")
+          .row
+            .div.card.code-div.yellow.darken-2.col.s12.m6.l6
+              label.white-text(class="input-label", for="circle_name") Your Code Name (to be used for the draw in this circle)
+              input.white-text(id="code_name", formControlName="code_name")
+              <app-control-messages [control]="userForm.controls.code_name" ></app-control-messages>
+
         p 
         span Already have an account? 
         span

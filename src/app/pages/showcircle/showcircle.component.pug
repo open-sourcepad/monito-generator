@@ -8,5 +8,11 @@
         p.owner-label Made by: {{currentCircle['owner']}}
         p.exchange-label Exchange Date: {{currentCircle['exchange_date']}}
         p.budget-label Budget: {{currentCircle['budget']}}
+        .div
+          p Users In-Circle:
+          .div.green-text(*ngFor="let email of acceptedEmails")
+            p {{email}}
+        .div(*ngIf="acceptedEmails.length >= 3")
+            button.btn.waves-effect.waves-light.yellow.darken-2 Monito-Generate!
 
     app-add-users([currentCircle]="currentCircle")
