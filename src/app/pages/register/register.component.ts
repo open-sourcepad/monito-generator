@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ValidationService } from '../../control-messages/validation.service';
 import { UserService } from '../../services/api/user.service';
 import { HttpService } from '../../services/api/http.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +18,9 @@ export class RegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private httpService: HttpService,
-              private router: Router){
+              private router: Router,
+              private route: ActivatedRoute
+    ){
     this.userForm = this.formBuilder.group({
       'user_name':['', Validators.required],
       'email':['', [Validators.required, ValidationService.emailValidator]],
@@ -29,6 +31,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(form_params): any {
+    form_params['invited_by'] = this.route.snapshot.params['circle_id'];
     this.httpService.postToRoute('/api/users',form_params, null).subscribe(
       response => {
         if ('user_name' in response){
@@ -46,9 +49,6 @@ export class RegisterComponent implements OnInit {
           console.log("Registration Failed!");
           console.log(response);
         }
-
-        //debugger;
-        //console.log();
       }
     );
    }
