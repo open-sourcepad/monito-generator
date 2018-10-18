@@ -15,48 +15,64 @@ export class RegisterComponent implements OnInit {
   rendUser: any;
 
   userForm: any;
-  groupExist: any;
   regForm: any;
   invitedBy: any;
+  userExist: any;
+  groupExist: any;
+
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private httpService: HttpService,
               private router: Router,
               private route: ActivatedRoute
   ){
-     this.regForm = {
-       'user_name':['', Validators.required],
-       'email':['', [Validators.required, ValidationService.emailValidator]],
-       'password':['', [Validators.required, Validators.minLength(6)]],
-       'password_confirmation':['', Validators.required]
-     }
-     this.invitedBy = this.route.snapshot.params['circle_id']
+    // if the user exists
+    this.userExist = this.route.snapshot.params['user_name'];
+    // if user has been invited to a circle
+    this.invitedBy = this.route.snapshot.params['circle_id']
 
-     if(this.invitedBy){
-       this.regForm['code_name'] = ['', Validators.required]
-     }
+    if(this.userExist){
+       this.regForm = {
+         'code_name': ['', Validators.required]
+       }
+    }
+    // if the user does not exist
+    else{
+       // fresh register
+       this.regForm = {
+         'user_name':['', Validators.required],
+         'email':['', [Validators.required, ValidationService.emailValidator]],
+         'password':['', [Validators.required, Validators.minLength(6)]],
+         'password_confirmation':['', Validators.required]
+       }
 
-     this.userForm = this.formBuilder.group(this.regForm)
+       // if the user has been invited
+
+       if(this.invitedBy){
+         this.regForm['code_name'] = ['', Validators.required]
+       }
+
+    }
+    this.userForm = this.formBuilder.group(this.regForm)
+
   }
 
   onSubmit(form_params): any {
     form_params['invited_by'] = this.invitedBy;
+    if(!form_params['user_name']){
+      form_params['user_name'] = this.userExist;
+      form_params['user_exists'] = true;
+    }
     this.httpService.postToRoute('/api/users',form_params, null).subscribe(
       response => {
         if ('user_name' in response){
           this.rendUser = response;
 
-          console.log('Registration Success!');
-          console.log(this.rendUser);
           localStorage.setItem('mg_current_user', JSON.stringify(this.rendUser))
-          // activate dashboard link
           this.router.navigate(['/dashboard/' + this.rendUser['user_name']])
-          // put login cookie in the browser
         }
         else{
           this.rendErrors = response;
-          console.log("Registration Failed!");
-          console.log(response);
         }
       }
     );

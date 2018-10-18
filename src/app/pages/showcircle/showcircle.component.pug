@@ -12,9 +12,9 @@
           p Users In-Circle:
           .div.green-text(*ngFor="let email of acceptedEmails")
             p {{email}}
-      .div(*ngIf="currentUser['user_name'] == currentCircle['owner']")
-        .div(*ngIf="acceptedEmails.length >= 3")
-            button.btn.waves-effect.waves-light.yellow.darken-2 Monito-Generate!
+        .div(*ngIf="currentUser['user_name'] == currentCircle['owner']")
+          .div(*ngIf="acceptedEmails.length >= 3")
+              button.btn.waves-effect.waves-light.yellow.darken-2 Monito-Generate!
 
     .div(*ngIf="currentUser['user_name'] == currentCircle['owner']")
       app-add-users([currentCircle]="currentCircle")
