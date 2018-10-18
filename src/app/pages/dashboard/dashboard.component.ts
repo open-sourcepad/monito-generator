@@ -22,6 +22,10 @@ export class DashboardComponent implements OnInit {
     this.router.navigate([`addcircle/${this.currentUser['user_name']}`]);
   }
 
+  goToShowCircle(circleId){
+    debugger;
+    console.log();
+  }
   getCircles(){
     let params = new HttpParams();
     params = params.append('user_name', this.currentUser['user_name']);

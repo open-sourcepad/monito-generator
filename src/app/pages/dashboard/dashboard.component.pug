@@ -18,20 +18,20 @@
           .div(*ngFor="let circle of allCircles")
             .card.circle-card
               .card-content
-                p.circle-label.teal-text {{circle['circle_name']}}
+                a.circle-label.teal-text(routerLink="/{{currentUser['user_name']}}/showcircle/{{circle['id']}}") {{circle['circle_name']}}
                 p.budget-label Owner: {{circle['owner']}}
                 p.exchange-label Exchange Date: {{circle['exchange_date']}}
                 p.budget-label Budget: {{circle['budget']}}
+              .div(*ngIf="this.currentUser['user_name'] == circle['owner']")
+                .card-action
+                  a.btn-floating.btn-large.waves-effect.waves-light.red.action-btn(routerLink=`/{{currentUser['user_name']}}/showcircle/{{circle['id']}}`)
+                    i.material-icons add
 
-              .card-action
-                a.btn-floating.btn-large.waves-effect.waves-light.red.action-btn(routerLink=`/{{currentUser['user_name']}}/showcircle/{{circle['id']}}`)
-                  i.material-icons add
+                  a.btn-floating.btn-large.waves-effect.waves-light.red.action-btn
+                    i.material-icons edit
 
-                a.btn-floating.btn-large.waves-effect.waves-light.red.action-btn
-                  i.material-icons edit
-
-                a.btn-floating.btn-large.waves-effect.waves-light.red.action-btn
-                  i.material-icons close
+                  a.btn-floating.btn-large.waves-effect.waves-light.red.action-btn
+                    i.material-icons close
 
         ng-template(#noCircles)
           p No Circles to Show. Add a Circle now by clicking the "Add Circle" button.
