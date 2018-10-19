@@ -13,6 +13,7 @@ export class ShowcircleComponent implements OnInit {
   currentCircle: any;
   currentUser:any;
   acceptedEmails: any;
+  codenameList: any;
   constructor(private httpService: HttpService,
               private route: ActivatedRoute,
               private location: Location,
@@ -27,10 +28,20 @@ export class ShowcircleComponent implements OnInit {
     var snapshot = this.route.snapshot;
     this.params = snapshot.params;
     this.httpService.getToRoute(`/api/circles/${this.params['circle']}`, {}).subscribe(response =>{
+      debugger;
       this.currentCircle = response['circle_found'];
       this.acceptedEmails = response['accepted_emails'];
     });
   };
+
+  generateMonito(){
+    var circle_id = this.currentCircle['id'];
+    var path = `/api/circles/${circle_id}/generate_monito`;
+    console.log(path);
+    this.httpService.postToRoute(path, {'circle_id': circle_id}, {}).subscribe(response => {
+      this.codenameList = response['codename_arr'];
+    });
+  }
   ngOnInit() {
     this.currentUser = this.authService.getUser();
     this.getDetails();

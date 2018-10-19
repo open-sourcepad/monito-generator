@@ -8,13 +8,17 @@
         p.owner-label Made by: {{currentCircle['owner']}}
         p.exchange-label Exchange Date: {{currentCircle['exchange_date']}}
         p.budget-label Budget: {{currentCircle['budget']}}
-        .div
-          p Users In-Circle:
-          .div.green-text(*ngFor="let email of acceptedEmails")
-            p {{email}}
-        .div(*ngIf="currentUser['user_name'] == currentCircle['owner']")
-          .div(*ngIf="acceptedEmails.length >= 3")
-              button.btn.waves-effect.waves-light.yellow.darken-2 Monito-Generate!
+        .div(*ngIf="!currentCircle['arrangement']")
+          .div
+            p Users In-Circle:
+            .div.green-text(*ngFor="let email of acceptedEmails")
+              p {{email}}
+          .div(*ngIf="currentUser['user_name'] == currentCircle['owner']")
+            .div(*ngIf="acceptedEmails.length >= 3")
+                button.btn.waves-effect.waves-light.yellow.darken-2((click)="generateMonito()") Monito-Generate!
+        .div(*ngIf="currentCircle['arrangement']")
+          p {{currentCircle['arrangement']}}
+          p {{codenameList}}
 
     .div(*ngIf="currentUser['user_name'] == currentCircle['owner']")
       app-add-users([currentCircle]="currentCircle")
