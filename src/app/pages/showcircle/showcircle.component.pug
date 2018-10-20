@@ -17,8 +17,13 @@
             .div(*ngIf="acceptedEmails.length >= 3")
                 button.btn.waves-effect.waves-light.yellow.darken-2((click)="generateMonito()") Monito-Generate!
         .div(*ngIf="currentCircle['arrangement']")
-          p {{currentCircle['arrangement']}}
-          p {{codenameList}}
+          br
+          p.exchange-label Exchange List
+          ng-container(*ngFor="let codename of codenameList; let i = index")
+            span.code-name {{codename}}
+            span(*ngIf = "i%2==0")
+              i.material-icons arrow_forward
+            br(*ngIf = "i%2!=0")
 
     .div(*ngIf="currentUser['user_name'] == currentCircle['owner']")
       app-add-users([currentCircle]="currentCircle")

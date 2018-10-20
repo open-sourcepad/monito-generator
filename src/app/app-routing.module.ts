@@ -19,9 +19,11 @@ const routes: Routes = [
     component: RegisterComponent,
     canActivate: [LoginGuardService]
    },
+  { path: 'register/:circle_id',
+    component: RegisterComponent
+   },
   { path: 'register/:circle_id/:user_name',
     component: RegisterComponent,
-    canActivate: [LoginGuardService]
    },
   { path: 'dashboard/:user',
     component: DashboardComponent,

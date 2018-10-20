@@ -28,9 +28,9 @@ export class ShowcircleComponent implements OnInit {
     var snapshot = this.route.snapshot;
     this.params = snapshot.params;
     this.httpService.getToRoute(`/api/circles/${this.params['circle']}`, {}).subscribe(response =>{
-      debugger;
       this.currentCircle = response['circle_found'];
       this.acceptedEmails = response['accepted_emails'];
+      this.codenameList = response['codename_arr'];
     });
   };
 
