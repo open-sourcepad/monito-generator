@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { HttpService } from '../../services/api/http.service';
 import { Location } from '@angular/common';
 import { AuthService } from '../../services/utility/auth.service';
+import { ToastrService } from 'ngx-toastr';;
+
 @Component({
   selector: 'app-showcircle',
   templateUrl: './showcircle.component.pug',
@@ -18,7 +20,8 @@ export class ShowcircleComponent implements OnInit {
               private route: ActivatedRoute,
               private location: Location,
               private authService: AuthService,
-              private router: Router
+              private router: Router,
+              private toastr: ToastrService
   ) { }
   goBack(){
     this.location.back();
@@ -41,6 +44,7 @@ export class ShowcircleComponent implements OnInit {
     console.log(path);
     this.httpService.postToRoute(path, {'circle_id': circle_id}, {}).subscribe(response => {
       this.codenameList = response['codename_arr'];
+      this.toastr.success(`Monito-Generated: ${this.currentCircle['circle_name']}`)
       this.router.navigate([`/dashboard/${this.currentUser['user_name']}`]);
     });
   }

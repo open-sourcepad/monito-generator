@@ -15,7 +15,7 @@
               p {{email}}
           .div(*ngIf="currentUser['user_name'] == currentCircle['owner']")
             .div(*ngIf="acceptedEmails.length >= 3")
-                button.btn.waves-effect.waves-light.yellow.darken-2((click)="generateMonito()") Monito-Generate!
+                button.btn.waves-effect.waves-light.teal.lighten-1((click)="generateMonito()") Monito-Generate!
         .div(*ngIf="currentCircle['arrangement']")
           br
           p.exchange-label Exchange List
