@@ -4,6 +4,7 @@ import { ValidationService } from '../../control-messages/validation.service';
 import { UserService } from '../../services/api/user.service';
 import { HttpService } from '../../services/api/http.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,8 @@ export class RegisterComponent implements OnInit {
               private userService: UserService,
               private httpService: HttpService,
               private router: Router,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private toastr: ToastrService
   ){
     // if the user exists
     this.userExist = this.route.snapshot.params['user_name'];
@@ -68,6 +70,12 @@ export class RegisterComponent implements OnInit {
         if ('user_name' in response){
           this.rendUser = response;
 
+          if ('circle_invitation' in response){
+            this.toastr.success(`Succesfully Added You to: ${response['circle_invitation']}`);
+          }
+          else{
+            this.toastr.success('Registration Successful!');
+          }
           localStorage.setItem('mg_current_user', JSON.stringify(this.rendUser))
           this.router.navigate(['/dashboard/' + this.rendUser['user_name']])
         }

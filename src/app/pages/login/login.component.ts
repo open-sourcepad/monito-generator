@@ -4,6 +4,7 @@ import { ValidationService } from '../../control-messages/validation.service';
 import { UserService } from '../../services/api/user.service';
 import { HttpService } from '../../services/api/http.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,9 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private router: Router,
-              private httpService: HttpService) {
+              private httpService: HttpService,
+              private toastr: ToastrService
+  ) {
     this.userForm = this.formBuilder.group({
       'email':['', [Validators.required, ValidationService.emailValidator]],
       'password':['', Validators.required]
@@ -36,9 +39,8 @@ export class LoginComponent implements OnInit {
           console.log('Registration Success!');
           console.log(this.rendUser);
           localStorage.setItem('mg_current_user', JSON.stringify(this.rendUser))
-          // activate dashboard link
           this.router.navigate(['/dashboard/' + this.rendUser['user_name']])
-          // put login cookie in the browser
+          this.toastr.success(`Login Successful: ${this.rendUser['user_name']}`)
         }
         else{
           this.rendErrors = response;

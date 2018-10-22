@@ -6,6 +6,8 @@ import { AuthService } from '../../services/utility/auth.service';
 import { Headers,RequestOptions } from '@angular/http';
 import { Router } from '@angular/router';
 import { ValidationService } from '../../control-messages/validation.service';
+import { ToastrService} from 'ngx-toastr';
+
 @Component({
   selector: 'app-addcircle',
   templateUrl: './addcircle.component.pug',
@@ -20,7 +22,8 @@ export class AddcircleComponent implements OnInit {
               private location: Location,
               private httpService: HttpService,
               private authService: AuthService,
-              private router: Router
+              private router: Router,
+              private toastr: ToastrService
   ) {
     this.circleForm = this.formBuilder.group({
       'circle_name': ['', Validators.required],
@@ -47,11 +50,13 @@ export class AddcircleComponent implements OnInit {
       response =>{
         if(response['error']){
           console.log(response);
+          this.toastr.success(`There was an error in your action.`)
           this.router.navigate([`/dashboard/${this.storedUser['user_name']}`]);
         }
         else{
           console.log(response);
           this.router.navigate([`/dashboard/${this.storedUser['user_name']}`]);
+          this.toastr.success(`Successfully Added Circle: ${form_params['circle_name']}!`)
         }
     }
     )
