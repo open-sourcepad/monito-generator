@@ -22,5 +22,8 @@
   display:inline-block;
 }
 .code-name{
-  font-size:1.4em;
+  font-size:1.3em;
+}
+.arrow{
+  vertical-align:middle;
 }

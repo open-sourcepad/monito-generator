@@ -17,7 +17,8 @@ export class ShowcircleComponent implements OnInit {
   constructor(private httpService: HttpService,
               private route: ActivatedRoute,
               private location: Location,
-              private authService: AuthService
+              private authService: AuthService,
+              private router: Router
   ) { }
   goBack(){
     this.location.back();
@@ -40,6 +41,7 @@ export class ShowcircleComponent implements OnInit {
     console.log(path);
     this.httpService.postToRoute(path, {'circle_id': circle_id}, {}).subscribe(response => {
       this.codenameList = response['codename_arr'];
+      this.router.navigate([`/dashboard/${this.currentUser['user_name']}`]);
     });
   }
   ngOnInit() {
