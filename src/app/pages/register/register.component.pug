@@ -1,10 +1,10 @@
 .row
-  .container.card.col.s10.offset-s1.m10.offset-m1.l8.offset-l2
+  .container.col.s10.offset-s1.m10.offset-m1.l8.offset-l2
 
-    .card-content
-      app-show-errors([errorResponse]="rendErrors")
+    .content
       form([formGroup]="userForm", (ngSubmit)="onSubmit(userForm.value)")
-        .div(*ngIf="!userExist")
+        .div.card.cont-div(*ngIf="!userExist")
+          app-show-errors([errorResponse]="rendErrors")
           h5(class="session-title") Sign Up
           label(class="input-label", for="user_name") User Name
           input(id=user_name, formControlName="user_name")
@@ -23,11 +23,26 @@
           <app-control-messages [control]="userForm.controls.password_confirmation"></app-control-messages>
 
         .div(*ngIf="groupExist")
-          .row
-            .div.card.code-div.yellow.darken-2.col.s12.m6.l6
-              label.white-text(class="input-label", for="circle_name") Your Code Name (to be used for the draw in this circle)
-              input.white-text(id="code_name", formControlName="code_name")
-              <app-control-messages [control]="userForm.controls.code_name" ></app-control-messages>
+          .div.card.cont-div
+            h5(class="session-title") Codename
+            label(class="input-label", for="circle_name") Your Code Name (to be used for the draw in this circle)
+            input(id="code_name", formControlName="code_name")
+            <app-control-messages [control]="userForm.controls.code_name" ></app-control-messages>
+
+
+
+          .div.card.cont-div(formArrayName="wishes")
+            h5(class="session-title") Wishlist
+            label(class="input-label", for="circle_name") Please add atleast 3 items in your wishlist to make it easier for your monito/monita.
+
+            .form-div(*ngFor="let wish of userForm.get('wishes').controls;let i=index")
+              .div([formGroupName]="i")
+                span
+                  label Wish
+                  input(formControlName="wish", type="text")
+                  app-control-messages([control]="wish.controls.wish")
+              button.btn-small.waves-effect.waves-light.red.darken-2((click)="removeWish(i)") Remove
+            a.btn.waves-effect.waves-light.yellow.darken-2.add-user-btn((click)="addWish()") Add Another Wish
 
         .div(*ngIf="!userExist")
           span Already have an account? 

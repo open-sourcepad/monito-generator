@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Location } from '@angular/common';
 import { HttpService } from '../../services/api/http.service';
 import { AuthService } from '../../services/utility/auth.service';
@@ -30,10 +30,24 @@ export class AddcircleComponent implements OnInit {
       'budget': ['', Validators.required],
       'exchange_date': ['', [Validators.required, ValidationService.dateValidator]],
       'code_name': ['', Validators.required],
+      wishes: this.formBuilder.array([])
     });
 
   }
 
+  addWish(){
+    var wishesArr = <FormArray>this.circleForm.controls.wishes;
+    wishesArr.push(
+      this.formBuilder.group({
+        'wish': ['', [Validators.required]]
+      })
+    )
+  }
+
+  removeWish(i){
+    var wishesArr = <FormArray>this.circleForm.controls.wishes;
+    wishesArr.removeAt(i);
+  }
   goBack(){
     this.location.back();
   }
@@ -44,7 +58,8 @@ export class AddcircleComponent implements OnInit {
                            'exchange_date':form_params['exchange_date'],
                            'user_name': this.storedUser['user_name'],
                            'auth_hash': this.storedUser['auth_hash'],
-                           'code_name': form_params['code_name']
+                           'code_name': form_params['code_name'],
+                           'wish_list': form_params['wishes']
     };
     this.httpService.postToRoute('/api/circles', this.requestHolder, null).subscribe(
       response =>{
@@ -62,6 +77,9 @@ export class AddcircleComponent implements OnInit {
     )
   }
   ngOnInit() {
+    this.addWish();
+    this.addWish();
+    this.addWish();
   }
 
 }

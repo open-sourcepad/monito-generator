@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ValidationService } from '../../control-messages/validation.service';
 import { UserService } from '../../services/api/user.service';
 import { HttpService } from '../../services/api/http.service';
@@ -35,7 +35,9 @@ export class RegisterComponent implements OnInit {
 
     if(this.userExist){
        this.regForm = {
-         'code_name': ['', Validators.required]
+         'code_name': ['', Validators.required],
+         wishes: this.formBuilder.array([])
+
        }
     }
     // if the user does not exist
@@ -51,12 +53,27 @@ export class RegisterComponent implements OnInit {
        // if the user has been invited
 
        if(this.invitedBy){
-         this.regForm['code_name'] = ['', Validators.required]
+         this.regForm['code_name'] = ['', Validators.required];
+         this.regForm['wishes'] = this.formBuilder.array([])
        }
 
     }
     this.userForm = this.formBuilder.group(this.regForm)
 
+  }
+
+  addWish(){
+    var wishesArr = <FormArray>this.regForm.wishes;
+    wishesArr.push(
+      this.formBuilder.group({
+        'wish': ['', [Validators.required]]
+      })
+    )
+  }
+
+  removeWish(i){
+    var wishesArr = <FormArray>this.regForm.wishes;
+    wishesArr.removeAt(i);
   }
 
   onSubmit(form_params): any {
@@ -89,6 +106,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
     this.groupExist = this.route.snapshot.params['circle_id'];
     // check if valid
+    if(this.invitedBy){
+      this.addWish();
+      this.addWish();
+      this.addWish();
+    }
+
   }
 
 }

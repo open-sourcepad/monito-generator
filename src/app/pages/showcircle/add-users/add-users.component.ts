@@ -46,7 +46,7 @@ export class AddUsersComponent implements OnInit {
   onSubmit(formParams){
     var path = `/api/circles/${this.currentCircle['id']}/send_emails`;
     this.httpService.postToRoute(path, {'current_circle': this.currentCircle, 'invitations': formParams  },{}).subscribe( response => {});
-    this.toastr.success(`Invitations Sent!`)
+    this.toastr.success(`Invitation(s) Sent!`)
     this.router.navigate([`/dashboard/${this.storedUser['user_name']}`])
   }
   ngOnInit() {
