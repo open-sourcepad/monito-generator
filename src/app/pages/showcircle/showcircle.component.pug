@@ -6,8 +6,14 @@
       .card-content
         p.circle-label.teal-text {{currentCircle['circle_name']}}
         p.owner-label Made by: {{currentCircle['owner']}}
-        p.exchange-label Exchange Date: {{currentCircle['exchange_date']}}
         p.budget-label Budget: {{currentCircle['budget']}}
+        p.exchange-label Exchange Date: {{currentCircle['exchange_date']}}
+        .div(*ngIf="userEvents")
+          p Events
+          .div(*ngFor="let event of userEvents")
+            p(*ngIf="event['desc']")
+              span {{event['desc']}} 
+              span ({{event['exchange_date']}})
         .div(*ngIf="!currentCircle['arrangement']")
           .div
             p Users In-Circle:

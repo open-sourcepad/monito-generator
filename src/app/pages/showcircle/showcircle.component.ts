@@ -16,6 +16,7 @@ export class ShowcircleComponent implements OnInit {
   currentUser:any;
   acceptedEmails: any;
   codenameList: any;
+  userEvents: any;
   constructor(private httpService: HttpService,
               private route: ActivatedRoute,
               private location: Location,
@@ -35,6 +36,7 @@ export class ShowcircleComponent implements OnInit {
       this.currentCircle = response['circle_found'];
       this.acceptedEmails = response['accepted_emails'];
       this.codenameList = response['codename_arr'];
+      this.userEvents = response['user_events'];
     });
   };
 
