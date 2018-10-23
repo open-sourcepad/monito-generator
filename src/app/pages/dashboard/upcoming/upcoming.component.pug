@@ -1,0 +1,13 @@
+.card.yellow.darken-2.white-text.component-card
+  p.upcoming-title Upcoming Exchanges
+  .div(*ngIf="userEvents")
+    .div.eventCont(*ngFor="let userEvent of userEvents")
+      p
+        span.circle-name 
+          a.red-text(routerLink="/{{currentUser['user_name']}}/showcircle/{{userEvent.circle_id}}") {{userEvent.circle_name}}
+        br
+        span {{userEvent.desc}}
+        br(*ngIf="userEvent.desc")
+        span {{userEvent.exchange_date}}
+  .div(*ngIf="!userEvents")
+    p No upcoming exchanges.

@@ -21,6 +21,7 @@ import { ClienterrorComponent } from './pages/clienterror/clienterror.component'
 import { AddcircleComponent } from './pages/addcircle/addcircle.component';
 import { ShowcircleComponent } from './pages/showcircle/showcircle.component';
 import { AddUsersComponent } from './pages/showcircle/add-users/add-users.component';
+import { UpcomingComponent } from './pages/dashboard/upcoming/upcoming.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AddUsersComponent } from './pages/showcircle/add-users/add-users.compon
     AddcircleComponent,
     ShowcircleComponent,
     AddUsersComponent,
+    UpcomingComponent,
   ],
   imports: [
     BrowserModule,

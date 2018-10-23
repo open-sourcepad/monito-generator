@@ -1,0 +1,13 @@
+.component-card{
+  padding:15px;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+.upcoming-title{
+  font-family: "Lobster";
+  font-size:1.3em;
+}
+.circle-name{
+  font-family: "Lobster";
+  font-size:1.2em;
+}
