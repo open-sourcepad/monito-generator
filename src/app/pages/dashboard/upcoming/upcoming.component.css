@@ -11,3 +11,9 @@
   font-family: "Lobster";
   font-size:1.2em;
 }
+.italic{
+  font-style: italic;
+}
+.important{
+  font-weight:bold;
+}

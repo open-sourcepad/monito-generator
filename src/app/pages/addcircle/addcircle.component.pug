@@ -27,6 +27,27 @@
           input(id="code_name", formControlName="code_name")
           <app-control-messages [control]="circleForm.controls.code_name" ></app-control-messages>
 
+        .div.card.cont-div(formArrayName="userEvents")
+          h5(class="session-title") Events
+          label(class="input-label", for="circle_name") This is a way to automate the "Something (adjective)" exchange (ie. "Something Big!"). This can come as a warmup to the final exchange date.
+
+          .form-div(*ngFor="let userEvent of circleForm.get('userEvents').controls;let i=index")
+            .div([formGroupName]="i")
+              span
+                label Event
+                input(formControlName="userEvent", type="text", placeholder="Something Awesome!")
+                app-control-messages([control]="userEvent.controls.userEvent")
+              span
+                label Exchange Date
+                input(formControlName="exchange_date", type="date")
+                app-control-messages([control]="userEvent.controls.exchange_date")
+
+            button.btn-small.waves-effect.waves-light.red.darken-2((click)="removeUserEvent(i)") Remove
+          br
+          a.btn.waves-effect.waves-light.yellow.darken-2.add-user-btn((click)="addUserEvent()") Add Event
+
+
+
         .div.card.cont-div(formArrayName="wishes")
           h5(class="session-title") Wishlist
           label(class="input-label", for="circle_name") Please add atleast 3 items in your wishlist to make it easier for your monito/monita.
@@ -38,7 +59,7 @@
                 input(formControlName="wish", type="text")
                 app-control-messages([control]="wish.controls.wish")
             button.btn-small.waves-effect.waves-light.red.darken-2((click)="removeWish(i)") Remove
-
+          br
           a.btn.waves-effect.waves-light.yellow.darken-2.add-user-btn((click)="addWish()") Add Another Wish
 
 

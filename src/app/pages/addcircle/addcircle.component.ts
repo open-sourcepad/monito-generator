@@ -30,9 +30,25 @@ export class AddcircleComponent implements OnInit {
       'budget': ['', Validators.required],
       'exchange_date': ['', [Validators.required, ValidationService.dateValidator]],
       'code_name': ['', Validators.required],
+      userEvents: this.formBuilder.array([]),
       wishes: this.formBuilder.array([])
     });
 
+  }
+
+  addUserEvent(){
+    var userEventsArr = <FormArray>this.circleForm.controls.userEvents;
+    userEventsArr.push(
+      this.formBuilder.group({
+        'userEvent': ['',[Validators.required]]
+        'exchange_date': ['', [Validators.required, ValidationService.dateValidator]],
+      })
+    )
+  }
+
+  removeUserEvent(i){
+    var userEventsArr = <FormArray>this.circleForm.controls.userEvents;
+    userEventsArr.removeAt(i);
   }
 
   addWish(){
@@ -48,9 +64,11 @@ export class AddcircleComponent implements OnInit {
     var wishesArr = <FormArray>this.circleForm.controls.wishes;
     wishesArr.removeAt(i);
   }
+
   goBack(){
     this.location.back();
   }
+
   addCircle(form_params){
     this.storedUser = this.authService.getUser();
     this.requestHolder = {'circle_name':form_params['circle_name'],
@@ -59,7 +77,8 @@ export class AddcircleComponent implements OnInit {
                            'user_name': this.storedUser['user_name'],
                            'auth_hash': this.storedUser['auth_hash'],
                            'code_name': form_params['code_name'],
-                           'wish_list': form_params['wishes']
+                           'wish_list': form_params['wishes'],
+                           'user_events': form_params['userEvents']
     };
     this.httpService.postToRoute('/api/circles', this.requestHolder, null).subscribe(
       response =>{
