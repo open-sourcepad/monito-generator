@@ -9,7 +9,7 @@
       app-upcoming
 
     .col.s10.offset-s1.m7.l7.component-card
-      h5.red-text.circle-title My Circles
+      h5.center.red-text.circle-title My Circles
       .div(*ngIf="allCircles")
 
         .div(*ngIf="allCircles.length >= 1; else noCircles")
@@ -17,19 +17,25 @@
             .card.circle-card
               .card-content
                 a.circle-label.teal-text(routerLink="/{{currentUser['user_name']}}/showcircle/{{circle['id']}}") {{circle['circle_name']}}
-                p.budget-label Owner: {{circle['owner']}}
-                p.exchange-label Exchange Date: {{circle['exchange_date']}}
-                p.budget-label Budget: {{circle['budget']}}
+                p.budget-label By: {{circle['owner']}}
+                p.exchange-label
+                  span Exchange Date
+                  span
+                    i.material-icons.icons arrow_forward 
+                  span {{circle['exchange_date']}}
+                p.budget-label 
+                  span Budget
+                  span
+                    i.material-icons.icons arrow_forward
+                  span {{circle['budget']}}
+
               .div(*ngIf="this.currentUser['user_name'] == circle['owner']")
                 .card-action
-                  a.btn-floating.btn-large.waves-effect.waves-light.red.action-btn(routerLink=`/{{currentUser['user_name']}}/showcircle/{{circle['id']}}`)
-                    i.material-icons add
+                  a.btn.btn-medium.waves-effect.waves-light.red.action-btn(routerLink=`/{{currentUser['user_name']}}/showcircle/{{circle['id']}}`) Add Users
 
-                  a.btn-floating.btn-large.waves-effect.waves-light.red.action-btn
-                    i.material-icons edit
+                  a.btn.btn-medium.waves-effect.waves-light.red.action-btn Edit
 
-                  a.btn-floating.btn-large.waves-effect.waves-light.red.action-btn((click)="deleteCircle(circle['circle_name'])")
-                    i.material-icons close
+                  a.btn.btn-medium.waves-effect.waves-light.red.action-btn((click)="deleteCircle(circle['circle_name'])") Delete
 
         ng-template(#noCircles)
-          p No Circles to Show. Add a Circle now by clicking the "Add Circle" button.
+          p.center No Circles to Show. Add a Circle now by clicking the "Add Circle" button.

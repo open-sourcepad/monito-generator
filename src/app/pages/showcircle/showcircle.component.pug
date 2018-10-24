@@ -2,23 +2,42 @@
   .col.s10.offset-s1.m10.offset-m1.l8.offset-l2.circle-card(*ngIf="currentCircle")
     button(class="btn waves-effect waves-light red submit-btn", (click)="goBack()") Back to Dashboard
 
-    .card.center
+    .card.show-card
       .card-content
         p.circle-label.teal-text {{currentCircle['circle_name']}}
-        p.owner-label Made by: {{currentCircle['owner']}}
-        p.budget-label Budget: {{currentCircle['budget']}}
-        p.exchange-label Exchange Date: {{currentCircle['exchange_date']}}
-        .div(*ngIf="userEvents")
-          p Events
+        p.owner-label.bold By: {{currentCircle['owner']}}
+
+        hr
+        p 
+          span Exchange Date
+          span
+            i.material-icons.icon arrow_forward
+          span {{currentCircle['exchange_date']}}
+
+        p.budget-label 
+          span Budget
+          span
+            i.material-icons.icon arrow_forward
+          span {{currentCircle['budget']}}
+
+        .div(*ngIf="userEvents.length > 1")
+          br
+          p.head-text Events
           .div(*ngFor="let event of userEvents")
             p(*ngIf="event['desc']")
+              span
+                i.material-icons.icon event
               span {{event['desc']}} 
               span ({{event['exchange_date']}})
         .div(*ngIf="!currentCircle['arrangement']")
           .div
-            p Users In-Circle:
-            .div.green-text(*ngFor="let email of acceptedEmails")
-              p {{email}}
+            br
+            p.head-text Participants
+            .div.green-text.text-darken-2(*ngFor="let email of acceptedEmails")
+              p
+                span
+                  i.material-icons.icon verified_user
+                span {{email}}
           .div(*ngIf="currentUser['user_name'] == currentCircle['owner']")
             .div(*ngIf="acceptedEmails.length >= 3")
                 button.btn.waves-effect.waves-light.teal.lighten-1((click)="generateMonito()") Monito-Generate!
@@ -27,8 +46,7 @@
           p.exchange-label Exchange List
           ng-container(*ngFor="let codename of codenameList; let i = index")
             span.code-name {{codename}}
-            span(*ngIf = "i%2==0")
-              i.material-icons.arrow arrow_forward
+            span(*ngIf = "i%2==0").gives-text.red-text &nbsp; gives a gift to &nbsp;
             br(*ngIf = "i%2!=0")
 
     .div(*ngIf="(currentUser['user_name'] == currentCircle['owner']) && !codenameList")

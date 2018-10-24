@@ -15,11 +15,14 @@
 }
 .dash-title{
   font-family: "Lobster";
-  font-size:1.3em;
+  font-size:1.5em;
+}
+.card-content{
+  font-family:"Raleway";
 }
 .circle-title{
   font-family: "Lobster";
-  font-size:2.2em;
+  font-size:2.5em;
 }
 .dash-btn{
   margin:5px;
@@ -27,8 +30,11 @@
 }
 .circle-label{
   font-family: "Lobster";
-  font-size: 1.4em;
+  font-size: 1.5em;
 }
 .action-btn{
   margin:3px;
+}
+.icons{
+  vertical-align:middle;
 }

@@ -1,3 +1,6 @@
+.show-card{
+  padding:25px;
+}
 .circle-card{
   font-family:"Raleway";
 }
@@ -11,9 +14,6 @@
 .owner-label, .exchange-label, .budget-label{
   font-size:1.1em;
 }
-.exchange-label{
-  font-weight:bold;
-}
 .add-users-label{
   margin:20px !important;
   padding:20px !important;
@@ -22,8 +22,16 @@
   display:inline-block;
 }
 .code-name{
-  font-size:1.3em;
+  font-family:"Raleway";
+  font-size:1.2em;
 }
-.arrow{
+.icon{
   vertical-align:middle;
+}
+.head-text{
+  font-weight:bold;
+}
+.gives-text{
+  font-size:1.2em;
+  font-family: "Lobster";
 }
