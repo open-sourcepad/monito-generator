@@ -1,6 +1,6 @@
 .card.yellow.darken-2.white-text.component-card
   p.upcoming-title Upcoming Exchanges
-  .div(*ngIf="userEvents.length >=1; else noUserEvents")
+  .div(*ngIf="userEvents?.length >=1; else noUserEvents")
     .div.eventCont(*ngFor="let userEvent of userEvents")
       p
         span.circle-name 
