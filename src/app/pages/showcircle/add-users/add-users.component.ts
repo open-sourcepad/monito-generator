@@ -45,9 +45,21 @@ export class AddUsersComponent implements OnInit {
   };
   onSubmit(formParams){
     var path = `/api/circles/${this.currentCircle['id']}/send_emails`;
-    this.httpService.postToRoute(path, {'current_circle': this.currentCircle, 'invitations': formParams  },{}).subscribe( response => {});
-    this.toastr.success(`Invitation(s) Sent!`)
-    this.router.navigate([`/dashboard/${this.storedUser['user_name']}`])
+    this.httpService.postToRoute(path, {'current_circle': this.currentCircle, 'invitations': formParams  },{}).subscribe( response => {
+      if(response['existing_emails'].length >= 1){
+        var existing_emails = response['existing_emails']
+        var inviteWarn = 'Some Invited Email(s) are Already in the Circle:'
+        for(var i=0;i<existing_emails.length;i++){
+          inviteWarn += '\n' + existing_emails[i]
+        }
+        this.toastr.warning(inviteWarn)
+      }
+      else{
+        this.toastr.success(`Invitation(s) Sent!`);
+      }
+
+    });
+    this.router.navigate([`/dashboard/${this.storedUser['user_name']}`]);
   }
   ngOnInit() {
     this.storedUser = this.authService.getUser();

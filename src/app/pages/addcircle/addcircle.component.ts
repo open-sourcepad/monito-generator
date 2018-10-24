@@ -40,8 +40,8 @@ export class AddcircleComponent implements OnInit {
     var userEventsArr = <FormArray>this.circleForm.controls.userEvents;
     userEventsArr.push(
       this.formBuilder.group({
-        'userEvent': ['',[Validators.required]]
-        'exchange_date': ['', [Validators.required, ValidationService.dateValidator]],
+        'userEvent': ['',[Validators.required]],
+        'exchange_date': ['', [Validators.required, ValidationService.dateValidator]]
       })
     )
   }
