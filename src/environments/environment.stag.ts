@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api_url: "https://api-mg.spstage.com" // change to domain of staging
+  api_url: "https://monitogenapi.spstage.com" // change to domain of staging
 };
