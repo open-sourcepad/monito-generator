@@ -31,13 +31,12 @@ export class RegisterComponent implements OnInit {
     // if the user exists
     this.userExist = this.route.snapshot.params['user_name'];
     // if user has been invited to a circle
-    this.invitedBy = this.route.snapshot.params['circle_id']
+    this.invitedBy = this.route.snapshot.params['circle_id'];
 
     if(this.userExist){
        this.regForm = {
          'code_name': ['', Validators.required],
          wishes: this.formBuilder.array([])
-
        }
     }
     // if the user does not exist
@@ -49,16 +48,14 @@ export class RegisterComponent implements OnInit {
          'password':['', [Validators.required, Validators.minLength(6)]],
          'password_confirmation':['', Validators.required]
        }
-
        // if the user has been invited
-
        if(this.invitedBy){
          this.regForm['code_name'] = ['', Validators.required];
-         this.regForm['wishes'] = this.formBuilder.array([])
+         this.regForm['wishes'] = this.formBuilder.array([]);
        }
 
     }
-    this.userForm = this.formBuilder.group(this.regForm)
+    this.userForm = this.formBuilder.group(this.regForm);
 
   }
 

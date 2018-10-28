@@ -35,17 +35,12 @@ export class LoginComponent implements OnInit {
       response => {
         if ('user_name' in response){
           this.rendUser = response;
-
-          console.log('Registration Success!');
-          console.log(this.rendUser);
           localStorage.setItem('mg_current_user', JSON.stringify(this.rendUser))
           this.router.navigate(['/dashboard/' + this.rendUser['user_name']])
           this.toastr.success(`Login Successful: ${this.rendUser['user_name']}`)
         }
         else{
           this.rendErrors = response;
-          console.log("Login Failed!");
-          console.log(response);
         }
 
       }
