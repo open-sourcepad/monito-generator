@@ -4,7 +4,7 @@
 
     .card.show-card
       .div.right(*ngIf="this.currentUser['user_name'] == this.currentCircle['owner']")
-        a.btn.btn-medium.waves-effect.waves-light.red.action-btn Edit
+        a.btn.btn-medium.waves-effect.waves-light.red.action-btn(routerLink="/{{this.currentCircle['owner']}}/editcircle/{{this.currentCircle['id']}}") Edit
 
         a.btn.btn-medium.waves-effect.waves-light.red.action-btn([swal]="deleteSwal") Delete
                     

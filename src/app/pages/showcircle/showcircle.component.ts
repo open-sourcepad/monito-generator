@@ -18,7 +18,8 @@ export class ShowcircleComponent implements OnInit {
   codenameList: any;
   userEvents: any;
   constructor(private httpService: HttpService,
-              private route: ActivatedRoute, private location: Location,
+              private route: ActivatedRoute,
+              private location: Location,
               private authService: AuthService,
               private router: Router,
               private toastr: ToastrService

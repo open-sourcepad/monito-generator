@@ -23,6 +23,7 @@ import { ShowcircleComponent } from './pages/showcircle/showcircle.component';
 import { AddUsersComponent } from './pages/showcircle/add-users/add-users.component';
 import { UpcomingComponent } from './pages/dashboard/upcoming/upcoming.component';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { EditcircleComponent } from './pages/editcircle/editcircle.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
     ShowcircleComponent,
     AddUsersComponent,
     UpcomingComponent,
+    EditcircleComponent,
   ],
   imports: [
     BrowserModule,

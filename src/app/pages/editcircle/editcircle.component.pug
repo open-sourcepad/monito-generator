@@ -1,0 +1,64 @@
+.row
+  .container.col.s10.offset-s1.m10.offset-m1.l8.offset-l2
+
+    .content
+      button(class="btn waves-effect waves-light red submit-btn", (click)="goBack()") Back to Circle Details
+
+
+      form([formGroup]="circleForm", (ngSubmit)="updateCircle(circleForm.value)")
+
+        .div.card.cont-div
+          h5(class="session-title") Circle Details
+          label(class="input-label", for="circle_name") Circle Name
+          input(id="circle_name", formControlName="circle_name")
+          <app-control-messages [control]="circleForm.controls.circle_name" ></app-control-messages>
+
+          label(class="input-label", for="budget") Budget
+          input(id="budget", formControlName="budget")
+          <app-control-messages [control]="circleForm.controls.budget" ></app-control-messages>
+
+          label(class="input-label", for="exchange_date") Date of Exchange
+          input(id="exchange_date", formControlName="exchange_date", type="date")
+          <app-control-messages [control]="circleForm.controls.exchange_date" ></app-control-messages>
+
+        .div.card.cont-div
+          h5(class="session-title") Codename
+          label(class="input-label", for="circle_name") Your Code Name (to be used for the draw in this circle)
+          input(id="code_name", formControlName="code_name")
+          <app-control-messages [control]="circleForm.controls.code_name" ></app-control-messages>
+
+        .div.card.cont-div(formArrayName="userEvents")
+          h5(class="session-title") Events
+          label(class="input-label", for="circle_name") This is a way to automate the "Something (adjective)" exchange (ie. "Something Big!"). This can come as a warmup to the final exchange date.
+
+          .form-div(*ngFor="let userEvent of circleForm.get('userEvents').controls;let i=index")
+            .div([formGroupName]="i")
+              span
+                label Event
+                input(formControlName="userEvent", type="text", placeholder="Something Awesome!")
+                app-control-messages([control]="userEvent.controls.userEvent")
+              span
+                label Exchange Date
+                input(formControlName="exchange_date", type="date")
+                app-control-messages([control]="userEvent.controls.exchange_date")
+
+            button.btn-small.waves-effect.waves-light.red.darken-2((click)="removeUserEvent(i)") Remove
+          br
+          a.btn.waves-effect.waves-light.yellow.darken-2.add-user-btn((click)="addUserEvent()") Add Event
+
+        .div.card.cont-div(formArrayName="wishes")
+          h5(class="session-title") Wishlist
+          label(class="input-label", for="circle_name") Please add atleast 3 items in your wishlist to make it easier for your monito/monita.
+
+          .form-div(*ngFor="let wish of circleForm.get('wishes').controls;let i=index")
+            .div([formGroupName]="i")
+              span
+                label Wish
+                input(formControlName="wish", type="text")
+                app-control-messages([control]="wish.controls.wish")
+            button.btn-small.waves-effect.waves-light.red.darken-2((click)="removeWish(i)") Remove
+          br
+          a.btn.waves-effect.waves-light.yellow.darken-2.add-user-btn((click)="addWish()") Add Another Wish
+
+
+        button(class="btn waves-effect waves-light teal lighten-1 submit-btn", type="submit", [disabled]="!circleForm.valid") Update Circle
