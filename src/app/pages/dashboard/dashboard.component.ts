@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../services/api/user.service';
-import { AuthService } from '../../services/utility/auth.service';
+import { UserService } from '../../services/api/user.service'; import { AuthService } from '../../services/utility/auth.service';
 import { Router } from '@angular/router';
 import { HttpService } from '../../services/api/http.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -35,9 +34,6 @@ export class DashboardComponent implements OnInit {
     this.httpService.getToRoute(`/api/circles/`, {params: params}).subscribe( response=>{
       this.allCircles = response['circles'];
     });
-  }
-  deleteCircle(circle_name){
-    this.toastr.success(`Successfully Deleted Circle: ${circle_name}!`)
   }
   ngOnInit() {
     this.getCircles();

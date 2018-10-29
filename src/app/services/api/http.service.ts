@@ -16,4 +16,8 @@ export class HttpService {
     path = environment.api_url + path;
     return this.httpClient.get(path, params);
   }
+  deleteToRoute(path){
+    path = environment.api_url + path;
+    return this.httpClient.delete(path);
+  }
 }

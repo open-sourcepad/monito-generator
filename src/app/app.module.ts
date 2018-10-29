@@ -22,6 +22,7 @@ import { AddcircleComponent } from './pages/addcircle/addcircle.component';
 import { ShowcircleComponent } from './pages/showcircle/showcircle.component';
 import { AddUsersComponent } from './pages/showcircle/add-users/add-users.component';
 import { UpcomingComponent } from './pages/dashboard/upcoming/upcoming.component';
+import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,13 @@ import { UpcomingComponent } from './pages/dashboard/upcoming/upcoming.component
     HttpModule,
     HttpClientModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot(), // ToastrModule added
+    SweetAlert2Module.forRoot({
+                buttonsStyling: false,
+                customClass: 'modal-content',
+                confirmButtonClass: 'btn btn-primary',
+                cancelButtonClass: 'btn'})
+
   ],
   providers: [],
   bootstrap: [AppComponent]

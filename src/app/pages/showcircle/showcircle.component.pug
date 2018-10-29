@@ -3,6 +3,13 @@
     button(class="btn waves-effect waves-light red submit-btn", (click)="goBack()") Back to Dashboard
 
     .card.show-card
+      .div.right(*ngIf="this.currentUser['user_name'] == this.currentCircle['owner']")
+        a.btn.btn-medium.waves-effect.waves-light.red.action-btn Edit
+
+        a.btn.btn-medium.waves-effect.waves-light.red.action-btn([swal]="deleteSwal") Delete
+                    
+        swal(#deleteSwal, title="Are you sure?", text="Deleting this event will also delete all associated sub-events.",[showCancelButton]="true", [showCloseButton]="true", type="warning" , [focusCancel]="true", (confirm)="deleteCircle(this.params['circle'])")
+
       .card-content
         p.circle-label.teal-text {{currentCircle['circle_name']}}
         p.owner-label.bold By: {{currentCircle['owner']}}

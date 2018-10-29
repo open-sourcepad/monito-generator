@@ -18,8 +18,7 @@ export class ShowcircleComponent implements OnInit {
   codenameList: any;
   userEvents: any;
   constructor(private httpService: HttpService,
-              private route: ActivatedRoute,
-              private location: Location,
+              private route: ActivatedRoute, private location: Location,
               private authService: AuthService,
               private router: Router,
               private toastr: ToastrService
@@ -39,6 +38,13 @@ export class ShowcircleComponent implements OnInit {
       this.userEvents = response['user_events'];
     });
   };
+
+  deleteCircle(circle_id){
+    this.httpService.deleteToRoute(`/api/circles/${circle_id}`).subscribe( response=>{
+      this.toastr.success(`Successfully Deleted Circle: ${response['deleted_circle']}!`);
+      this.router.navigate([`/dashboard/${this.currentUser['user_name']}`]);
+    });
+  }
 
   generateMonito(){
     var circle_id = this.currentCircle['id'];
