@@ -120,7 +120,7 @@ export class EditcircleComponent implements OnInit {
                            'user_events': form_params['userEvents']
     };
     var snapshot = this.route.snapshot;
-    this.httpService.patchToRoute(`/api/circles/${snapshot.params['circle']}`, this.requestHolder, null).subscribe(
+    this.httpService.patchToRoute(`/api/circles/${snapshot.params['circle']}`, this.requestHolder).subscribe(
       response =>{
         if(response['error']){
           console.log(response);

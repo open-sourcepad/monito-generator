@@ -44,7 +44,7 @@ export class AddUsersComponent implements OnInit {
     usersArr.removeAt(i);
   };
   onSubmit(formParams){
-    var path = `/api/circles/${this.currentCircle['id']}/send_emails`;
+    var path = `/api/circles/${this.currentCircle['hash_id']}/send_emails`;
     this.httpService.postToRoute(path, {'current_circle': this.currentCircle, 'invitations': formParams  },{}).subscribe( response => {
       if(response['existing_emails'].length >= 1){
         var existing_emails = response['existing_emails']

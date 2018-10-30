@@ -48,7 +48,7 @@ export class ShowcircleComponent implements OnInit {
   }
 
   generateMonito(){
-    var circle_id = this.currentCircle['id'];
+    var circle_id = this.currentCircle['hash_id'];
     var path = `/api/circles/${circle_id}/generate_monito`;
     console.log(path);
     this.httpService.postToRoute(path, {'circle_id': circle_id}, {}).subscribe(response => {

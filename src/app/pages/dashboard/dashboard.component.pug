@@ -16,7 +16,7 @@
           .div(*ngFor="let circle of allCircles")
             .card.circle-card
               .card-content
-                a.circle-label.teal-text(routerLink="/{{currentUser['user_name']}}/showcircle/{{circle['id']}}") {{circle['circle_name']}}
+                a.circle-label.teal-text(routerLink="/{{currentUser['user_name']}}/showcircle/{{circle['hash_id']}}") {{circle['circle_name']}}
                 p.budget-label By: {{circle['owner']}}
                 p.exchange-label
                   span Exchange Date
