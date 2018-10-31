@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.userService.data.subscribe(response=>{
       this.userHolder = response;
-      console.log(this.userHolder);
+      //console.log(this.userHolder);
     })
   }
 

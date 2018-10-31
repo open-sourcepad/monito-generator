@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './pages/register/register.component';
@@ -54,8 +55,8 @@ import { EditcircleComponent } from './pages/editcircle/editcircle.component';
                 buttonsStyling: false,
                 customClass: 'modal-content',
                 confirmButtonClass: 'btn btn-primary',
-                cancelButtonClass: 'btn'})
-
+                cancelButtonClass: 'btn'}),
+    InfiniteScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]

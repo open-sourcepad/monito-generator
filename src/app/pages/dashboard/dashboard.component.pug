@@ -12,7 +12,7 @@
       h5.center.red-text.circle-title My Circles
       .div(*ngIf="allCircles")
 
-        .div(*ngIf="allCircles.length >= 1; else noCircles")
+        .circle-items(infiniteScroll, [infiniteScrollDistance]="0", [infiniteScrollThrottle]="50",  (scrolled)="onScroll()", *ngIf="allCircles.length >= 1; else noCircles")
           .div(*ngFor="let circle of allCircles")
             .card.circle-card
               .card-content

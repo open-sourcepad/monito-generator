@@ -12,7 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DashboardComponent implements OnInit {
   currentUser: any = this.authService.getUser();
-  allCircles: any;
+  allCircles: any = [];
+  page = 1;
   constructor(private userService: UserService,
               private authService: AuthService,
               private router: Router,
@@ -23,17 +24,17 @@ export class DashboardComponent implements OnInit {
   goToAddCircle(){
     this.router.navigate([`addcircle/${this.currentUser['user_name']}`]);
   }
-
-  goToShowCircle(circleId){
-    debugger;
-    console.log();
-  }
   getCircles(){
     let params = new HttpParams();
     params = params.append('user_name', this.currentUser['user_name']);
+    params = params.append('page', String(this.page));
+    this.page++;
     this.httpService.getToRoute(`/api/circles/`, {params: params}).subscribe( response=>{
-      this.allCircles = response['circles'];
+      this.allCircles = this.allCircles.concat(response['circles']);
     });
+  }
+  onScroll(){
+    this.getCircles();
   }
   ngOnInit() {
     this.getCircles();
